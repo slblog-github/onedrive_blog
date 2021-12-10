@@ -70,9 +70,9 @@ export default {
         }
         const getStatusCode = (c) => this.statusCode = c
         axios.get('/api/index')
-        .then((response) => {
+        .then(async (response) => {
             if (!isBlogSettings()) {
-                axios.get(response.data.settingsUrl)
+                await axios.get(response.data.settingsUrl)
                 .then((response) => {
                     getSettings(response.data)
                 })
@@ -82,8 +82,7 @@ export default {
                 .finally(() => {
                     stopLoading(1)
                 })
-            }
-            else {
+            } else {
                 stopLoading(1)
             }
             getData(response.data.article)
