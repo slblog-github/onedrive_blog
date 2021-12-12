@@ -5,13 +5,18 @@
             <div class="flex-col my-4">
                 <div class="flex justify-center">
                     <div class="border-3 border-dashed rounded-md w-md" :class="borderColor">
-                        <div class="filter blur-2">
-                            <input v-model="myPassword" class="w-full text-center dark:bg-dark dark:text-green-100" style="outline: none;" @keyup.enter="loadArticle" />
+                        <div class="filter" :class="blurLevel">
+                            <input
+                                v-model="myPassword"
+                                class="w-full text-center dark:bg-dark dark:text-green-100"
+                                style="outline: none;"
+                                @keyup.enter="loadArticle"
+                                @focus="onFocus"
+                                @blur="onBlur"
+                            />
                         </div>
                     </div>
-                    <div class="cursor-pointer flex justify-center bg-green-100 dark:bg-green-900 w-8 h-8 border-3 border-dashed rounded-md ml-4" :class="borderColor" @click="loadArticle">
-                        <div class="w-auto text-xl align-middle text-green-500 dark:text-green-100 font-mono font-bold text-green-800">&gt;</div>
-                    </div>
+                    <button class="w-8 h-8 ml-4 text-2xl text-red-600" @click="loadArticle">☑</button>
                 </div>
             </div>
         </div>
@@ -32,6 +37,7 @@
 <script setup>
 const isLoading = useLoadStatus()
 const headMessage = useHeadMessage()
+const errorMessage = useErrorMessage()
 </script>
 
 <script>
@@ -48,7 +54,8 @@ export default {
             password: false,
             statusCode: 200,
             myPassword: '',
-            borderColor: 'border-green-500'
+            borderColor: 'border-green-500',
+            blurLevel: 'blur-2'
         }
     },
     beforeMount() {
@@ -58,6 +65,7 @@ export default {
         loadArticle () {
             this.isLoading = true
             this.headMessage = ''
+            this.errorMessage = ''
 
             const articleId = this.$route.params.id
             const password = this.myPassword
@@ -72,7 +80,12 @@ export default {
             }
             const noNeedPassword = () => this.password = false
             const getContentType = (t) => this.contentType = t
-
+            const getStatusCode = (c) => {
+                this.statusCode = c
+                if (c !== 200) {
+                    this.errorMessage = c
+                }
+            }
             const statusMonitor = [false, false]
             const stopLoading = (i) => {
                 statusMonitor[i] = true
@@ -101,7 +114,7 @@ export default {
                         getContentType(response.data.contentType)
                     })
                     .catch((contentError) => {
-                        getContent('')
+                        getStatusCode(contentError.response.status)
                     })
                     .finally(() => {
                         stopLoading(1)
@@ -111,11 +124,23 @@ export default {
                     needPassword()
                 }
             }).catch((error) => {
-                console.error(error.response.status)
+                getStatusCode(error.response.status)
             }).finally(() => {
                 stopLoading(0)
             })
+        },
+        onFocus () {
+            this.blurLevel = 'blur-1'
+        },
+        onBlur () {
+            this.blurLevel = 'blur-4'
         }
     }
 }
 </script>
+
+<style scoped>
+button {
+    outline: none;
+}
+</style>

@@ -24,7 +24,7 @@ export default async (_req: IncomingMessage, res: ServerResponse) => {
         articleCache = response.data.value
         res.statusCode = 200
     }).catch((error) => {
-        res.statusCode = error.statusCode
+        res.statusCode = error.response.status
     })
 
     if (res.statusCode !== 200) {

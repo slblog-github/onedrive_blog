@@ -31,6 +31,7 @@ const isLoading = useLoadStatus()
 const headMessage = useHeadMessage()
 const blogSettings = useBlogSettings()
 const storeBlogSettings = useStoreBlogSettings()
+const errorMessage = useErrorMessage()
 </script>
 
 <script>
@@ -51,6 +52,7 @@ export default {
     beforeMount() {
         this.isLoading = true
         this.headMessage = ''
+        this.errorMessage = ''
 
         const getData = (a) => {
             this.article = a
@@ -68,7 +70,13 @@ export default {
                 this.isLoading = false
             }
         }
-        const getStatusCode = (c) => this.statusCode = c
+        const getStatusCode = (c) => {
+            this.statusCode = c
+            if (c !== 200) {
+                this.errorMessage = c
+            }
+        }
+
         axios.get('/api/index')
         .then(async (response) => {
             if (!isBlogSettings()) {

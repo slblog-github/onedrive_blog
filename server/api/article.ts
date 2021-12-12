@@ -30,7 +30,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         itemsCache = response.data.value
         res.statusCode = 200
     }).catch((error) => {
-        res.statusCode = error.statusCode
+        res.statusCode = error.response.status
     })
 
     if (res.statusCode !== 200) {
@@ -45,7 +45,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
                 settings = response.data
             })
             .catch((error) => {
-                res.statusCode = error.statusCode
+                res.statusCode = error.response.status
             })
         if (res.statusCode !== 200) {
             return result
