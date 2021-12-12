@@ -4,12 +4,12 @@
             <div class="text-4xl text-green-500 font-bold">{{ getConfig('saying') }}</div>
             <div v-for="a in article" :key="a.index">
                 <div class="flex-col justify-between h-auto w-full mx-auto my-4 p-4 border-3 border-green-500 border-dashed rounded-lg">
-                    <div class="text-2xl">
+                    <div class="text-2xl dark:text-green-100">
                         {{ a.title }}
                     </div>
                     <div class="flex w-full justify-end">
                             <NuxtLink :to="'/article/' + a.id">
-                                <div class="bg-green-50 p-1 border-3 border-green-500 border-dashed rounded-lg text-green-800 font-bold">
+                                <div class="bg-green-100 dark:bg-green-900 dark:text-green-100 p-1 border-3 border-green-500 border-dashed rounded-lg text-green-800 font-bold">
                                     点击阅读
                                 </div>
                             </NuxtLink>

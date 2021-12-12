@@ -1,16 +1,16 @@
 <template>
     <div class="border-3 border-green-500 border-dashed rounded-lg p-2">
         <div v-if="password">
-            <div class="text-3xl text-green-800">请输入密码：</div>
+            <div class="text-3xl text-green-800 dark:text-green-100">请输入密码：</div>
             <div class="flex-col my-4">
                 <div class="flex justify-center">
                     <div class="border-3 border-dashed rounded-md w-md" :class="borderColor">
                         <div class="filter blur-2">
-                            <input v-model="myPassword" class="w-full text-center" style="outline: none;" @keyup.enter="loadArticle" />
+                            <input v-model="myPassword" class="w-full text-center dark:bg-dark dark:text-green-100" style="outline: none;" @keyup.enter="loadArticle" />
                         </div>
                     </div>
-                    <div class="cursor-pointer flex justify-center bg-green-50 w-8 h-8 border-3 border-dashed rounded-md ml-4" :class="borderColor" @click="loadArticle">
-                        <div class="w-auto text-xl align-middle text-green-500 font-mono font-bold text-green-800">&gt;</div>
+                    <div class="cursor-pointer flex justify-center bg-green-100 dark:bg-green-900 w-8 h-8 border-3 border-dashed rounded-md ml-4" :class="borderColor" @click="loadArticle">
+                        <div class="w-auto text-xl align-middle text-green-500 dark:text-green-100 font-mono font-bold text-green-800">&gt;</div>
                     </div>
                 </div>
             </div>
@@ -20,10 +20,10 @@
                 <iframe class="w-full" style="height: calc(100vh - 8.5rem)" :srcdoc="content" />
             </div>
             <div v-else-if="contentType === 'md'">
-                <div style="white-space: pre-wrap;" v-text="content" />
+                <div class="dark:text-green-100" style="white-space: pre-wrap;" v-text="content" />
             </div>
             <div v-else-if="contentType === 'txt'">
-                <div style="white-space: pre-wrap;" v-text="content" />
+                <div class="dark:text-green-100" style="white-space: pre-wrap;" v-text="content" />
             </div>
         </div>
     </div>
@@ -119,7 +119,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
