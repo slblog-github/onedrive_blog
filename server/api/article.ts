@@ -15,6 +15,15 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const articleId = (new URLSearchParams(req.url)).get('id')
     const articlePassword = (new URLSearchParams(req.url)).get('password')
 
+    if (articleId === 'arect') {
+        return {
+            contentUrl: 'https://www.kanofans.com',
+            contentType: 'html',
+            settings: {},
+            password: false
+        }
+    }
+
     const accessToken = await getAccessToken(false)
     if (accessToken.error) {
         return result
