@@ -96,11 +96,13 @@ export default {
             else if (this.nowMode === 1) {
                 document.documentElement.classList.remove('dark')
             }
+
         }
     }
 }
 </script>
 
+<style src="assets/css/github-markdown.css"></style>
 <style scoped>
 button {
     outline: none;

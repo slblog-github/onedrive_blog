@@ -81,7 +81,7 @@ export default defineNuxtConfig({
 
 在博客文件夹内新建文件夹，命名格式为`index-title`，例如`1-第一篇文章`，项目将`-`用于分隔序号和标题，所以标题中若含有`-`会导致标题切割。后续将修复此问题。
 
-进入文件夹，创建文件`index.html`或`index.txt`，可以编写`html`或是纯文本。创建`settings.json`，输入内容如下：
+进入文件夹，创建文件`index.html`、`index.md`或`index.txt`，可以编写`html`或是纯文本。创建`settings.json`，输入内容如下：
 
 ```json
 {
@@ -100,5 +100,3 @@ export default defineNuxtConfig({
 ## 闲话
 
 关于为什么要做这个项目呢？都用上Vercel了，为什么不直接上Hexo呢？emm因为我想自己做点东西，调用一下微软的API，至于为什么要**调用**微软的API，懂的都懂，不懂的可以直接去用Hexo了，这才是真的博客引擎。
-
-等我懒完这阵子，试试解析`markdown`。

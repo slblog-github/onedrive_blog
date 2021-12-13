@@ -25,7 +25,7 @@
                 <iframe class="w-full" style="height: calc(100vh - 8.5rem)" :srcdoc="content" />
             </div>
             <div v-else-if="contentType === 'md'">
-                <div class="dark:text-green-100" style="white-space: pre-wrap;" v-text="content" />
+                <div class="dark:text-green-100 dark:bg-dark markdown-body w-full" v-html="content" />
             </div>
             <div v-else-if="contentType === 'txt'">
                 <div class="dark:text-green-100" style="white-space: pre-wrap;" v-text="content" />
@@ -41,7 +41,8 @@ const errorMessage = useErrorMessage()
 </script>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+import { marked } from 'marked'
 
 export default {
     name: '[id]',
@@ -71,6 +72,12 @@ export default {
             const password = this.myPassword
 
             const getContent = (c) => this.content = c
+            const getContentType = (t) => {
+                this.contentType = t
+                if (t === 'md' || t === 'MD') {
+                    this.content = marked.parse(this.content)
+                }
+            }
             const getSettings = (s) => this.settings = s
             const needPassword = () => {
                 this.password = true
@@ -79,7 +86,6 @@ export default {
                 }
             }
             const noNeedPassword = () => this.password = false
-            const getContentType = (t) => this.contentType = t
             const getStatusCode = (c) => {
                 this.statusCode = c
                 if (c !== 200) {
@@ -143,4 +149,5 @@ export default {
 button {
     outline: none;
 }
+.markdown-body {}
 </style>
