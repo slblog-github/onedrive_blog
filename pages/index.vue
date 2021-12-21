@@ -7,10 +7,13 @@
                     <div class="text-2xl dark:text-green-100">
                         {{ a.title }}
                     </div>
+                    <div class="text-md text-gray-500 dark:text-green-100">
+                        {{ a.updateDate }}
+                    </div>
                     <div class="flex w-full justify-end">
                             <NuxtLink :to="'/article/' + a.id">
                                 <div class="bg-green-100 dark:bg-green-900 dark:text-green-100 p-1 border-3 border-green-500 border-dashed rounded-lg text-green-800 font-bold">
-                                    点击阅读
+                                    {{ getConfig('button') }}
                                 </div>
                             </NuxtLink>
                     </div>
@@ -44,7 +47,8 @@ export default {
             article: [],
             defaultSettings: {
                 saying: '全部文章：',
-                desc: true
+                desc: true,
+                button: '点击阅读'
             },
             statusCode: 200
         }
@@ -106,11 +110,11 @@ export default {
         sortArticle () {
             let i = 0
             for (const a of this.article) {
-                const arr = a.dirName.split('-')
-                const indexValue = Number(arr[0])
+                const indexValue = Number(a.dirName.substring(0, a.dirName.indexOf('-')))
                 if (typeof indexValue === 'number' && !isNaN(indexValue)) {
                     this.article[i].index = indexValue
-                    this.article[i].title = arr[1]
+                    this.article[i].title = a.dirName.substring(a.dirName.indexOf('-') + 1)
+                    this.article[i].updateDate = this.article[i].updateDate.substring(0, this.article[i].updateDate.indexOf('T'))
                     i = i + 1
                 }
             }

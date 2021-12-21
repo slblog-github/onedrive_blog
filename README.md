@@ -6,7 +6,7 @@
 
 ## 使用
 
-### 1. 获取项目
+### 1. 获取项目（任选一种）
 
 * 下载仓库源码并导入自己的仓库（此方法可以创建私有仓库）
 * Fork本仓库
@@ -15,7 +15,7 @@
 
 ### 2. 修改配置文件
 
-修改根目录下文件`nuxt.congif.ts`，初始文件内容如下
+修改根目录下文件`nuxt.config.ts`，初始文件内容如下
 
 ```ts
 import { defineNuxtConfig } from 'nuxt3'
@@ -71,7 +71,8 @@ export default defineNuxtConfig({
 ```json
 {
     "saying": "出现在博客上方的一行大字",
-    "desc": true
+    "desc": true,
+    "button": "点击阅读按钮上的字"
 }
 ```
 
@@ -79,10 +80,15 @@ export default defineNuxtConfig({
 
 #### 编写文章
 
-在博客文件夹内新建文件夹，命名格式为`index-title`，例如`1-第一篇文章`，项目将`-`用于分隔序号和标题，所以标题中若含有`-`会导致标题切割。后续将修复此问题。
+在博客文件夹内新建文件夹，命名格式为`index-title`，例如`1-第一篇文章`，项目将第一个`-`用于分隔序号和标题。
 
-进入文件夹，创建文件`index.html`、`index.md`或`index.txt`，可以编写`html`或是纯文本。创建`settings.json`，输入内容如下：
+进入文件夹，创建文件`index.html`、`index.md`或`index.txt`，可以编写`html`或是`Markdown`或是纯文本。`Markdown`中如果需要插入图片，可以将图片存在文章文件夹根目录，在`Markdown`中插入`![图片](name.format)`。例如：
 
+![文件夹格式](./assets/doc/markdown_picture1.png)
+
+![markdown内容](./assets/doc/markdown_picture2.png)
+
+创建`settings.json`，输入内容如下：
 ```json
 {
     "password": "123"
@@ -103,9 +109,6 @@ export default defineNuxtConfig({
 
 因为Nuxt3支持的UI框架还比较少，所以目前的界面样式都还是简单设计的，可能不是很好看。如果希望有更好看的界面的话，不妨自己动手，将本项目作为API，自己编写前端。目前本项目只有两个API，放在`server/api`目录下（能动手写前端，应该能看懂API返回的内容）。但是后期我还想添加内容，所以接口大概还会调整。
 
-## 下一步
-
-等我懒完这段时间，想将Markdown的图片完善好，目前Markdown中想插入外部资源，只能利用图床或者类似的东西，下一步想直接读取本地数据，但是设计上还需要多思考一下。
 
 ## 闲话
 

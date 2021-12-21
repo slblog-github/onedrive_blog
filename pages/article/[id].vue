@@ -24,7 +24,7 @@
             <div v-if="contentType === 'html'">
                 <iframe class="w-full" style="height: calc(100vh - 8.5rem)" :srcdoc="content" />
             </div>
-            <div v-else-if="contentType === 'md'">
+            <div v-else-if="contentType === 'md' || contentType === 'markdown'">
                 <div class="dark:text-green-100 dark:bg-dark markdown-body w-full" v-html="content" />
             </div>
             <div v-else-if="contentType === 'txt'">
@@ -52,6 +52,7 @@ export default {
             content: '',
             contentType: 'txt',
             settings: {},
+            files: [],
             password: false,
             statusCode: 200,
             myPassword: '',
@@ -74,11 +75,16 @@ export default {
             const getContent = (c) => this.content = c
             const getContentType = (t) => {
                 this.contentType = t
-                if (t === 'md' || t === 'MD') {
+                if (t === 'md' || t === 'markdown') {
                     this.content = marked.parse(this.content)
+                    for (const f of this.files) {
+                        this.content = this.content.replaceAll('<img src="' + f.name, '<img src="' + f.url)
+                        this.content = this.content.replaceAll('<img src="./' + f.name, '<img src="' + f.url)
+                    }
                 }
             }
             const getSettings = (s) => this.settings = s
+            const getFiles = (f) => this.files = f
             const needPassword = () => {
                 this.password = true
                 if (this.myPassword !== '') {
@@ -109,6 +115,7 @@ export default {
                 if (!response.data.password) {
                     noNeedPassword()
                     getSettings(response.data.settings)
+                    getFiles(response.data.files)
                     if (response.data.contentUrl === '') {
                         getContent('文件缺失，请等待同步')
                         stopLoading(1)

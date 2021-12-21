@@ -9,6 +9,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         contentUrl: '',
         contentType: '',
         settings: {},
+        files: [],
         password: false
     }
 
@@ -24,7 +25,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
 
     const path = config.ONEDRIVE_URI + '/items/' + articleId + '/children'
     await axios.get(
-        path + '?select=name,@microsoft.graph.downloadUrl',
+        path + '?select=name,@microsoft.graph.downloadUrl,file',
         { headers: { Authorization: 'bearer ' + accessToken.token } }
     ).then((response) => {
         itemsCache = response.data.value
@@ -64,6 +65,7 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
     const fileIndex = [
         'index.html',
         'index.md',
+        'index.markdown',
         'index.txt'
     ]
 
@@ -72,7 +74,20 @@ export default async (req: IncomingMessage, res: ServerResponse) => {
         if (temp !== undefined) {
             result.contentUrl = temp['@microsoft.graph.downloadUrl']
             result.contentType = fi.split('.')[1]
-            return result
+            break
+        }
+    }
+
+    for (const ic of itemsCache) {
+        if (ic.name !== 'index.html' && ic.name !== 'index.md' && ic.name !== 'index.txt') {
+            if (ic.name !== 'settings.json' && ic.name !== 'Settings.json') {
+                if (ic['file'] !== undefined) {
+                    result.files.push({
+                        name: ic.name,
+                        url: ic['@microsoft.graph.downloadUrl']
+                    })
+                }
+            }
         }
     }
 

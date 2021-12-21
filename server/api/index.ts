@@ -18,7 +18,7 @@ export default async (_req: IncomingMessage, res: ServerResponse) => {
 
     const path = config.ONEDRIVE_URI + '/root' + (config.ROOT_PATH + '/').replace(/\//g, ':/')
     await axios.get(
-        path + 'children?select=name,id,@microsoft.graph.downloadUrl',
+        path + 'children?select=name,id,lastModifiedDateTime,@microsoft.graph.downloadUrl,folder',
         { headers: { Authorization: 'bearer ' + accessToken.token } }
     ).then((response) => {
         articleCache = response.data.value
@@ -36,11 +36,13 @@ export default async (_req: IncomingMessage, res: ServerResponse) => {
             result.settingsUrl = articleCacheElement['@microsoft.graph.downloadUrl']
             continue
         }
-        result.article.push({
-            dirName: articleCacheElement.name,
-            id: articleCacheElement.id
-        })
+        if (articleCacheElement.folder !== undefined) {
+            result.article.push({
+                dirName: articleCacheElement.name,
+                id: articleCacheElement.id,
+                updateDate: articleCacheElement.lastModifiedDateTime
+            })
+        }
     }
-
     return result
 }
