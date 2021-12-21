@@ -787,11 +787,8 @@
     margin: 0;
     font-size: 85%;
     background-color: rgba(16, 185, 129, 0.1);
-    border-radius: 0.5rem;
-    border-width: 3px;
+    border-radius: 0.2rem;
     --tw-border-opacity: 1;
-    border-color: rgba(16, 185, 129, var(--tw-border-opacity));
-    border-style: dashed;
 }
 
 .markdown-body code br,
