@@ -97,7 +97,9 @@ dNE7Q~wkKa6nQSoZTogN8jUwXimZ2x4Bz_LHt
 
 ![](./assets/doc/refreshtoken.png)
 
-此时，已经获取`client_id`、`client_secret`、`refresh_token`。
+如果你能肯定成功部署，即可以卸载`Nodejs`。此时，已经获取`client_id`、`client_secret`、`refresh_token`。
+
+*教程中示例的token我都删了，不用试的。*
 
 ### 4. 部署至Vercel
 
