@@ -6,12 +6,12 @@
 
 ## 使用
 
-### 1. 获取项目
+### 1. 获取项目（任选其一）
 
 * 下载仓库源码并导入自己的仓库（此方法可以创建私有仓库）
 * Fork本仓库（不推荐）
 
-部署项目时，可以删除`/assete/doc`文件夹，此文件夹存放的是`README.md`内的图片。
+部署项目时，可以删除`/assets/doc`文件夹，此文件夹存放的是`README.md`内的图片。
 
 ### 2. 修改配置文件
 
@@ -40,7 +40,7 @@ export default defineNuxtConfig({
 })
 ```
 
-**注意：**目录格式为`/Dir1/Dir2/Dir3`，项目内没有其它特殊处理，所以格式错误可能会导致访问出错。
+**注意：** 目录格式为`/Dir1/Dir2/Dir3`，项目内没有其它特殊处理，所以格式错误可能会导致访问出错。
 
 ### 3. 获取Token
 
@@ -67,8 +67,6 @@ export default defineNuxtConfig({
 ![新客户端密码](./assets/doc/addsecret.png)
 
 添加成功后，复制密钥。**注意：密钥只有第一次添加时才会显示，如果退出页面则无法再次获取。而且，密钥是“*值*”，而不是“*机密ID*”**
-
-dNE7Q~wkKa6nQSoZTogN8jUwXimZ2x4Bz_LHt
 
 ![复制密钥](./assets/doc/secret.png)
 
