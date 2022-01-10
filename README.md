@@ -143,6 +143,24 @@ export default defineNuxtConfig({
 
 ![markdown内容](./assets/doc/markdown_picture2.png)
 
+如果创建了html文件但是需要插入单独的样式文件或者js文件，请将css文件和js文件像上文中图片一样放在文章目录下，然后直接在html文件中引用：
+
+```html
+<html>
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<h1 class="test">
+    测试样式
+</h1>
+</body>
+</html>
+```
+
+不要附加路径。
+
 创建`settings.json`，输入内容如下：
 ```json
 {
