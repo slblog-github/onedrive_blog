@@ -14,7 +14,7 @@
             <div class="fixed h-full w-full z-20 flex justify-center items-center backdrop-filter backdrop-blur">
                 <div class="mb-48 flex-col place-content-center">
                     <div class="flex justify-center">
-                        <img src="~/assets/onedrive.png" alt="logo" class="filter -hue-rotate-45" :class="animateClass">
+                        <img src="/onedrive.png" alt="Loading" class="filter -hue-rotate-45" :class="animateClass">
                     </div>
                     <div class="flex justify-center">
                         <div class="text-2xl text-green-900 dark:text-green-100 mx-1">
