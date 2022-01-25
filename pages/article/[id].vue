@@ -30,6 +30,9 @@
             <div v-else-if="contentType === 'txt'">
                 <div class="dark:text-green-100" style="white-space: pre-wrap;" v-text="content" />
             </div>
+            <div v-else-if="contentType === 'url'">
+                <iframe class="w-full" style="height: calc(100vh - 8.5rem)" :src="content" />
+            </div>
         </div>
     </div>
 </template>
@@ -44,9 +47,12 @@ const errorMessage = useErrorMessage()
 import axios from 'axios'
 import { marked } from 'marked'
 
+definePageMeta({
+    layout: "home",
+});
+
 export default {
     name: '[id]',
-    layout: 'home',
     data () {
         return {
             content: '',
@@ -75,6 +81,9 @@ export default {
             const getContent = (c) => this.content = c
             const getContentType = (t) => {
                 this.contentType = t
+                if (this.contentType === 'redirect') {
+                    window.location.href = this.content
+                }
                 if (t === 'md' || t === 'markdown' || t === 'html') {
                     if (t === 'md' || t === 'markdown') {
                         this.content = marked.parse(this.content)
@@ -86,6 +95,7 @@ export default {
                         this.content = this.content.replaceAll('href="./' + f.name, 'href="./' + f.url)
                     }
                 }
+
             }
             const getSettings = (s) => this.settings = s
             const getFiles = (f) => this.files = f

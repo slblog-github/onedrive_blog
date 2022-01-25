@@ -137,7 +137,7 @@ export default defineNuxtConfig({
 
 在博客文件夹内新建文件夹，命名格式为`index-title`，例如`1-第一篇文章`，项目将第一个`-`用于分隔序号和标题。
 
-进入文件夹，创建文件`index.html`、`index.md`或`index.txt`，可以编写`html`或是`Markdown`或是纯文本。`Markdown`中如果需要插入图片，可以将图片存在文章文件夹根目录，在`Markdown`中插入`![图片](name.format)`。例如：
+进入文件夹，创建文件`index.html`、`index.md`、`index.txt`或`index.url`、`redirect.url`，可以编写`html`或是`Markdown`或是纯文本。`Markdown`中如果需要插入图片，可以将图片存在文章文件夹根目录，在`Markdown`中插入`![图片](name.format)`。例如：
 
 ![文件夹格式](./assets/doc/markdown_picture1.png)
 
@@ -160,6 +160,8 @@ export default defineNuxtConfig({
 ```
 
 不要附加路径。
+
+若使用`index.url`，则会将文件中的网址自动嵌套进网页，但是有些网页不允许嵌套，也有些页面存在跨域问题，我还不知道解决办法；如果是`redirect.url`，则会跳转至文件中的网址。
 
 创建`settings.json`，输入内容如下：
 ```json

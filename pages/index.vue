@@ -39,9 +39,13 @@ const errorMessage = useErrorMessage()
 
 <script>
 import axios from 'axios'
+
+definePageMeta({
+    layout: "home",
+});
+
 export default {
     name: 'index',
-    layout: 'home',
     data () {
         return {
             article: [],
