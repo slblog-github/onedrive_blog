@@ -33,6 +33,11 @@
             <div v-else-if="contentType === 'url'">
                 <iframe class="w-full" style="height: calc(100vh - 8.5rem)" :src="content" />
             </div>
+            <div v-else-if="contentType === 'redirect'">
+                <div class="dark:text-green-100" style="white-space: pre-wrap; text-align: center;">
+                    即将跳转至 <span class="text-green-800 dark:text-green-100">{{ content }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
