@@ -103,7 +103,6 @@ export default {
 <style src="assets/css/github-markdown.css"></style>
 <style src="assets/css/loading.css"></style>
 <style src="assets/css/main.css"></style>
-<script src="assets/js/main.js"></script>
 <style scoped>
 button {
     outline: none;
