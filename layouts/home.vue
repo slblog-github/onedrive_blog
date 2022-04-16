@@ -31,6 +31,9 @@
 </template>
 
 <script setup>
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+const notyf = new Notyf();
 const config = useRuntimeConfig()
 const isLoading = useLoadStatus()
 const headMessage = useHeadMessage()
@@ -98,6 +101,8 @@ export default {
         }
     }
 }
+
+notyf.success('加载完成');
 </script>
 
 <style src="assets/css/github-markdown.css"></style>
