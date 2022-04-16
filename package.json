@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "nuxt-windicss": "^2.1.1",
+    "notyf": "3.10.0",
     "nuxt3": "^3.0.0-27333874.279bfdc"
   },
   "dependencies": {
