@@ -1,0 +1,17 @@
+* {
+  transition: all .5s;
+}
+@import url('https://npm.elemecdn.com/notyf/notyf.min.css');
+.text-green-800 {
+  transition: all.5s;
+}
+.text-green-800:hover {
+  color: rgba(6,95,70,var(--tw-text-opacity));
+  background: #fff;
+}
+.text-green-500 {
+  transition: all .5s;
+}
+.text-green-500:hover {
+  color: rgba(6,95,70,var(--tw-text-opacity));
+}
