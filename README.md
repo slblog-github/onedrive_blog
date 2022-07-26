@@ -4,6 +4,10 @@
 
 [演示Demo](https://onedrive-blog.vercel.app)
 
+## Move to [arect/o-blog](https://github.com/arect/o-blog)
+
+nuxt即将发布v3正式版，o-blog也在缓慢编写中。
+
 ## 使用
 
 ### 1. 获取项目（任选其一）
